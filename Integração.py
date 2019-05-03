@@ -27,10 +27,10 @@ class Integ:
     
     def int_sc(aux):
         #Função que utiliza a biblioteca numpy e scipy
-        import timeit #Função utilizada para medir o tempo
-        ti = timeit.default_timer() #Início da contagem de tempo
+        import timeit #Função utilizada para medir o tempo        
         import numpy as np
         from scipy import integrate
+        ti = timeit.default_timer() #Início da contagem de tempo
         x = np.linspace(aux.a,aux.b,aux.n)
         y = fun(x)
         inte = integrate.trapz(y,x)

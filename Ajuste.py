@@ -59,11 +59,11 @@ class Ajuste:
         #Método de determinação dos coeficientes do polinômio de ajuste a partir
         #da biblioteca Scipy
         import timeit #Função utilizada para medir o tempo
+        from scipy.optimize import curve_fit #Função de ajuste da biblioteca scipy
         ti = timeit.default_timer() #Início da contagem de tempo
         def fun(x,a,b,c,d):
             #Função característica do ajuste, neste caso, um polinômio de grau 4
-            return a*x**3 + b*x**2 + c*x + d
-        from scipy.optimize import curve_fit
+            return a*x**3 + b*x**2 + c*x + d        
         popt,pcov = curve_fit(fun,cla.x,cla.fx)
         tf = timeit.default_timer() #Fim da contagem de tempo
         print('Tempo de execução foi de: ',tf-ti, 'segundos')            

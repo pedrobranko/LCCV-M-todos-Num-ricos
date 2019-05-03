@@ -22,6 +22,9 @@ class Linsolv:
     def gauss_seidel(aux): 
         #Função que utiliza o método de Gauss-Seidel 
         import timeit #Função utilizada para medir o tempo
+        tol = float(input('Entre com o valor da tolerância: ')) #Entrada da tolerância dada em 10^-n, n>=0
+        nite = int(input('Entre com o número de tentativas: ')) #Entrada do número de tentativas        
+        ti = timeit.default_timer() #Inínio da contagem de tempo 
         if aux.conv == True:
             return
         count = 0
@@ -29,10 +32,7 @@ class Linsolv:
         ax = aux.a
         b = aux.b        
         x0 = [0 for col in range(len(b))] #Cria matriz de zeros do chute inicial
-        x = [0 for col in range(len(b))] #Cria matriz utilizada para retorno      
-        tol = float(input('Entre com o valor da tolerância: ')) #Entrada da tolerância dada em 10^-n, n>=0
-        nite = int(input('Entre com o número de tentativas: ')) #Entrada do número de tentativas
-        ti = timeit.default_timer() #Inínio da contagem de tempo        
+        x = [0 for col in range(len(b))] #Cria matriz utilizada para retorno                 
         while dist**(1/2)>tol and count<nite: 
             #Algorítimo de Gauss-Seidel
             for i in range(0,len(b)):
