@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\title{Relatório LCCV}
+\author{Pedro Igor Ferreira Amorim \\ {pedro.amorim@ctec.ufal.br}}
+
+\date{Maio 2019}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+\paragraph{} Os métodos numéricos existem para resolução de grandes problemas que demandariam um tempo muito elevado ou que simplismenta são impossível ao ser humano executar. Apesar de rápidos e eficazes, os métodos numéricos podem ser mais precisos ou mais rápidos de acordo com a sua implementação. 
+
+\section{Objetivos}
+\paragraph{} Esta atividade tem por objetivo comparar a performance entre métodos implementados e os encontrados na biblioteca numpy e scipy.
+
+\section{Implementação}
+\paragraph{} Foram implementados os seguintes métodos numéricos: Resolução de sistema linear pelo método de Gauss-Seidel, interpolação pelo método de Lagrange, ajuste pelo método dos mínimos quadrados e integração pela fórmula de Newton-Cotes através da regra do trapézio\cite{DUMMY:1}. 
+\paragraph{} Todos os métodos foram implementados como funções de uma classe, pois as entradas compartilham dos mesmos atributos. Além deste fato, cada arquivo possui um exemplo teste para execução dos códigos e é nestes valores de retorno que foi baseada a análise apresentada neste relatório.
+
+
+\subsection{Método de Gauss-Seidel}
+
+\paragraph{}Este método de resolução de sistemas lineares é bastante rápido e possui uma precisão aceitável, contudo, possui restrições quanto ao seu uso. A implementação deste método teve como principal obstáculo a obtenção de uma matriz convergente pelos critérios das linas, colunas ou de Sassenfeld. Para tanto, uma função foi implementada para criar matrizes aleatórias que são convergentes.
+
+\paragraph{}Ao fim, a implementação possui como entrada a precisão, número máximo de iterações, matriz A e o vetor B, e retornando o vetor solução X, solucionando o sistema do tipo:
+\[\inline A*X = B\]
+
+\subsection{Método de Lagrange}
+
+\paragraph{}A interpolação de Lagrange permite a previsão de um valor dentro de um dado intervalo. A implementação seguiu o algorítimo de Lagrange e tem como entrada os pares ordenados x e y, retornando uma função do polinômio interpolado.
+
+\subsection{Método dos Mínimos Quadrados}
+\paragraph{}O método dos mínimos quadrados consegue ajustar uma função que melhor represente os dados obtidos. Nesta atividade, foi utilizada como função característica um polinômio de grau 4. Este método possui como entrada os pares ordenados de x e y e retorna os coeficientes do polinômio característico. Durante sua execução, faz-se necessária a solução de um sistema linear, no qual foi implementado o método da eliminação de Gauss para obter uma boa precisão na resposta (tendo em vista que o método de Gauss-Seidel nos da um valor aproximado e possui critérios de convergência).
+
+\subsection{Método de Newton-Cotes}
+\paragraph{}Método que usa como princípio a integração dada como a soma de "n" elementos de área, com n variando até os limites computacionais. Quanto maior a quantidade de elementos, mais precisa é o resultado da integração. O método implementado tem como entrada o intervalo de integração, a função a ser integrada e a quantidade de elementos de área.
+
+\section{Resultados e Discussão}
+\subsection{Método de Gauss-Seidel}
+\paragraph{}Ao executar o método, foi obtido um valor aproximadamente igual a resposta dada na criação da matriz convergente (ver código). Foi notado também que este método é mais lento que o fornecido pela biblioteca numpy, com a velocidade variando de acordo com a precisão empregada. A velocidade do método implementado possui média de 7.28e-4 segundos enquanto o numpy possui 2.72e-4 segundos com o método linalg.solve e 2.30e-4 segundos ao inverter a matriz A com o linalg.inv e multiplicar pelo vetor B.
+
+\subsection{Método de Lagrange}
+\paragraph{}Neste caso, o método implementado possui velocidade muito maior que a da biblioteca scipy, fornecendo os mesmos polinômios com aproximadamente metade da velocidade, onde o método executou com média de velocidade de 1.18e-6 segundos, enquanto o apresentado pela biblioteca scipy  executou em 6.46e-4 segundos.
+
+\subsection{Método dos Mínimos Quadrados}
+\paragraph{}Contrapondo o caso anterior, o método implementado foi muito mais lento que o fornecido pela biblioteca scipy, possivelmente pela necessidade da resolução de um sistema de equação linear em seu processo. A velocidade do método implementado possui média de 7.92e-3 segundos enquanto o scipy possui 4.43e-5 segundos.
+
+\subsection{Método de Newton-Cotes}
+\paragraph{}Ao fim dos testes, este método se apresentou mais eficiente em sua velocidade. A velocidade do método implementado possui média de 4.13e-5 segundos, enquanto que a da biblioteca possui 1.02e-4 segundos de média. Os dois apresentaram resultados próximos da resposta analítica com exatidão em até duas casas decimais.
+
+\section{Conclusão}
+\paragraph{}De fato, podemos concluit que os métodos implementados possuem desempenho similar com os fornecidos pela biblioteca numpy e scipy. Contudo, o trabalho exigido para implementação contrapõe os benefícios de velocidade que, em alguns casos, podem ser irrisórios.
+
+
+\bibliography{ref}
+\bibliographystyle{plain}
+\end{document}
